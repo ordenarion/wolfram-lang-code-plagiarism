@@ -1,0 +1,149 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      5077,        141]
+NotebookOptionsPosition[      4407,        123]
+NotebookOutlinePosition[      4846,        140]
+CellTagsIndexPosition[      4803,        137]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+  "dir", "=", 
+   "\"\<D:\\\\\:0430\:043d\:0442\:0438\:043f\:043b\:0430\:0433\:0438\:0430\
+\:0442\\\\data\\\\parsed_wm2\>\""}], ";"}]], "Input",
+ CellChangeTimes->{{3.9197642599695883`*^9, 3.919764268403287*^9}, {
+   3.919776086366537*^9, 3.9197761029470468`*^9}, {3.922189030611498*^9, 
+   3.922189032756916*^9}, 3.923132926029111*^9},
+ CellLabel->"In[1]:=",ExpressionUUID->"a3aa2010-f0b1-4da1-8f11-ac72b0e82486"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"findNotebooks", "[", "dir_", "]"}], ":=", 
+   RowBox[{"Flatten", "@", 
+    RowBox[{"DeleteCases", "[", 
+     RowBox[{
+      RowBox[{"Values", "@", 
+       RowBox[{"GroupBy", "[", 
+        RowBox[{
+         RowBox[{"FileNames", "[", 
+          RowBox[{
+           RowBox[{"\"\<*.nb\>\"", "|", "\"\<*.txt\>\""}], ",", "dir", ",", 
+           "Infinity"}], "]"}], ",", 
+         RowBox[{
+          RowBox[{"StringSplit", "[", 
+           RowBox[{"#", ",", 
+            RowBox[{"{", 
+             RowBox[{"\"\<.nb\>\"", ",", "\"\<.txt\>\""}], "}"}]}], "]"}], 
+          "&"}]}], "]"}]}], ",", 
+      RowBox[{"{", 
+       RowBox[{"_", ",", "__"}], "}"}]}], "]"}]}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.919776115965508*^9, 3.9197761374120693`*^9}},
+ CellLabel->"In[2]:=",ExpressionUUID->"a955abe5-a855-40ed-b82b-0023fa8cf784"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"notebooks2Txt", "[", "dir_", "]"}], ":=", 
+  RowBox[{"Module", "[", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"paths", "=", 
+       RowBox[{"findNotebooks", "[", "dir", "]"}]}], ",", " ", "string"}], 
+     "}"}], ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Export", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"StringSplit", "[", 
+          RowBox[{
+           RowBox[{
+           "#", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}], ",", 
+           "\"\<.nb\>\""}], "]"}], "<>", "\"\<.txt\>\""}], ",", 
+        RowBox[{"StringRiffle", "[", 
+         RowBox[{
+          RowBox[{"Flatten", "@", 
+           RowBox[{"DeleteCases", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{
+               RowBox[{"StringTake", "[", 
+                RowBox[{
+                 RowBox[{"StringSplit", "[", 
+                  RowBox[{"#", ",", "\"\<HoldComplete[\>\""}], "]"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"1", ",", 
+                   RowBox[{"-", "2"}]}], "}"}]}], "]"}], "&"}], "/@", 
+              RowBox[{
+              "#", "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}]}], 
+             ",", 
+             RowBox[{"{", "\"\<Null\>\"", "}"}]}], "]"}]}], ",", 
+          "\"\<\\n\>\""}], "]"}]}], "]"}], "&"}], "/@", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"#", ",", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"Function", "[", 
+             RowBox[{"x", ",", 
+              RowBox[{"ToString", "[", 
+               RowBox[{"x", ",", "InputForm"}], "]"}]}], "]"}], "/@", 
+            RowBox[{"NotebookImport", "[", 
+             RowBox[{"#", ",", 
+              RowBox[{"\"\<Input\>\"", "->", "\"\<HeldExpression\>\""}]}], 
+             "]"}]}], ")"}]}], "}"}], "&"}], "/@", "paths"}], ")"}]}]}], 
+   "\[IndentingNewLine]", "]"}]}]], "Input",
+ CellChangeTimes->{{3.919776335311118*^9, 3.9197764998603067`*^9}, {
+  3.919776532518512*^9, 3.9197765350579367`*^9}, {3.9221889210633507`*^9, 
+  3.9221889322018795`*^9}},
+ CellLabel->"In[3]:=",ExpressionUUID->"334ea5eb-b943-4f34-9810-361a2aee46c8"],
+
+Cell[BoxData[
+ RowBox[{"notebooks2Txt", "[", "dir", "]"}]], "Input",
+ CellChangeTimes->{{3.9219949117401323`*^9, 3.9219949136960955`*^9}, {
+  3.9545047916113014`*^9, 
+  3.9545047922879243`*^9}},ExpressionUUID->"c78290f5-90c9-4504-b8fe-\
+9c4c5d5f2878"]
+},
+WindowSize->{1141.5, 551.25},
+WindowMargins->{{Automatic, 48}, {65.25, Automatic}},
+Magnification:>1.1 Inherited,
+FrontEndVersion->"13.1 for Microsoft Windows (64-bit) (August 22, 2022)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"966423dd-eb04-4c58-bf81-0f3d11ceaf7a"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 449, 9, 32, "Input",ExpressionUUID->"a3aa2010-f0b1-4da1-8f11-ac72b0e82486"],
+Cell[1010, 31, 872, 23, 54, "Input",ExpressionUUID->"a955abe5-a855-40ed-b82b-0023fa8cf784"],
+Cell[1885, 56, 2264, 58, 158, "Input",ExpressionUUID->"334ea5eb-b943-4f34-9810-361a2aee46c8"],
+Cell[4152, 116, 251, 5, 31, "Input",ExpressionUUID->"c78290f5-90c9-4504-b8fe-9c4c5d5f2878"]
+}
+]
+*)
+
